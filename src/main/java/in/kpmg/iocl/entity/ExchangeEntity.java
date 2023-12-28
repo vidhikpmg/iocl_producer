@@ -9,7 +9,7 @@ import java.util.Date;
 
 @Entity
 /*Local*/
-@Table(name = "yvb_exchange_rate", schema = "iocl")
+@Table(name = "yv_exchg_rate_et_exch_rate", schema = "iocl")
 /*Production
 @Table(name = "yvb_exchange_rate", schema = "pricing_tool")*/
 public class ExchangeEntity {
