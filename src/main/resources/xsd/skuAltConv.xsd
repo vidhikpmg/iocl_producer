@@ -1,0 +1,39 @@
+<xs:schema xmlns:xs="http://www.w3.org/2001/XMLSchema"
+           targetNamespace="http://www.kpmg.in/iocl/SKUapi"
+           xmlns:tns="http://www.kpmg.in/iocl/SKUapi"
+           elementFormDefault="qualified">
+
+    <xs:element name="Sku_alt_conversionRequest">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="materialNo" type="xs:string"/>
+                <xs:element name="baseUnitOfMeasure" type="xs:string"/>
+                <xs:element name="unitOfMeasureDisplay" type="xs:string"/>
+                <xs:element name="numeratorConversion" type="xs:string"/>
+                <xs:element name="denominatorConversion" type="xs:string"/>
+
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:element name="Sku_alt_conversionResponse">
+        <xs:complexType>
+            <xs:sequence>
+                <xs:element name="isSuccess" type="xs:boolean"/>
+                <xs:element name="message" type="xs:string"/>
+                <xs:element name="sku_alt_conversion" type="tns:sku_alt_conversion" maxOccurs="unbounded"/>
+            </xs:sequence>
+        </xs:complexType>
+    </xs:element>
+
+    <xs:complexType name="sku_alt_conversion">
+        <xs:sequence>
+            <xs:element name="materialNo" type="xs:string"/>
+            <xs:element name="baseUnitOfMeasure" type="xs:string"/>
+            <xs:element name="unitOfMeasureDisplay" type="xs:string"/>
+            <xs:element name="numeratorConversion" type="xs:string"/>
+            <xs:element name="denominatorConversion" type="xs:string"/>
+        </xs:sequence>
+    </xs:complexType>
+
+</xs:schema>
