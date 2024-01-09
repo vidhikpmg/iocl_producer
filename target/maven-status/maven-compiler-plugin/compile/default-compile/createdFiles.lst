@@ -1,0 +1,11 @@
+in\kpmg\iocl\config\IoclWsdlConfig.class
+in\kpmg\iocl\endpoint\IoclEndpoint.class
+in\kpmg\iocl\repo\ExchangeRepo.class
+in\kpmg\iocl\api\ObjectFactory.class
+in\kpmg\iocl\serviceimpl\IoclDataServiceImpl.class
+in\kpmg\iocl\api\ExchangeRateRequest.class
+in\kpmg\iocl\entity\ExchangeEntity.class
+in\kpmg\iocl\api\package-info.class
+in\kpmg\iocl\api\ExchangeRateResponse.class
+in\kpmg\iocl\IoclApplication.class
+in\kpmg\iocl\api\AllExchange.class
