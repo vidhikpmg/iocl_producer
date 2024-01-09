@@ -24,19 +24,33 @@ public class IoclWsdlConfig {
 	}
 
 	@Bean
-	public XsdSchema schema() {
+	public XsdSchema exchangeSchema() {
 		return new SimpleXsdSchema(new ClassPathResource("xsd/iocl.xsd"));
 	}
 
 	@Bean(name = "allExchange")
-	public DefaultWsdl11Definition wsdlForExchangeData(XsdSchema schema) {
+	public DefaultWsdl11Definition wsdlForExchangeData(XsdSchema exchangeSchema) {
 		DefaultWsdl11Definition defaultWsdl11Definition = new DefaultWsdl11Definition();
 		defaultWsdl11Definition.setPortTypeName("ExchangeData");
 		defaultWsdl11Definition.setLocationUri("/iocl/allExchange");
 		defaultWsdl11Definition.setTargetNamespace("http://www.kpmg.in/iocl/api");
-		defaultWsdl11Definition.setSchema(schema);
+		defaultWsdl11Definition.setSchema(exchangeSchema);
 		return defaultWsdl11Definition;
+	}
 
+	@Bean
+	public XsdSchema skuSchema() {
+		return new SimpleXsdSchema(new ClassPathResource("xsd/skuAltConv.xsd"));
+	}
+
+	@Bean(name = "viewSkuAltConv")
+	public DefaultWsdl11Definition wsdlForViewAll(XsdSchema skuSchema) {
+		DefaultWsdl11Definition defaultWsdl11Definition = new DefaultWsdl11Definition();
+		defaultWsdl11Definition.setPortTypeName("ViewSkuAltConvPort");
+		defaultWsdl11Definition.setLocationUri("/iocl/viewSkuAltConv");
+		defaultWsdl11Definition.setTargetNamespace("http://www.kpmg.in/iocl/SKUapi");
+		defaultWsdl11Definition.setSchema(skuSchema);
+		return defaultWsdl11Definition;
 	}
 
 }
