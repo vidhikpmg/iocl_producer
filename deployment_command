@@ -2,3 +2,11 @@ nohup java -jar iocl_producer-0.0.1-SNAPSHOT.jar &
 tail -100f nohup.out
 sudo netstat -lntup | grep ":8090"
 sudo kill -9 `sudo lsof -t -i:8090`
+
+
+Start to server:
+javaw -jar iocl_producer-0.0.1-SNAPSHOT.jar
+
+To shutdown the server:
+curl -X POST http://localhost:8098/actuator/shutdown
+
