@@ -53,11 +53,13 @@ public class IoclDataServiceImpl {
 		String effective_date = req.getEffectiveDate();
 
 		ExchangeRateResponse exchangeRateResponse = new ExchangeRateResponse();
-		exchangeRateResponse.setIsSuccess(false);
 
 		List<AllExchange> fetchedList = new ArrayList<>();
 
-		if (from_currency != null && to_currency != null && exchange_type !=null && effective_date != null) {
+		if (from_currency!= null && from_currency.length() > 0 &&
+				to_currency != null && to_currency.length() > 0 &&
+				exchange_type !=null && exchange_type.length() > 0 &&
+				effective_date != null && effective_date.length() > 0) {
 			try {
 				List<ExchangeEntity> fetchData = exchangeRepo
 						.fetchExchangeData(from_currency, to_currency, exchange_type, effective_date);
@@ -76,12 +78,22 @@ public class IoclDataServiceImpl {
 
 				if (fetchedList.size() > 0) {
 					exchangeRateResponse.setIsSuccess(true);
+					exchangeRateResponse.setMessage("Data is fetched successfully");
 					exchangeRateResponse.getExchange().addAll(fetchedList);
-
+				}
+				else{
+					exchangeRateResponse.setIsSuccess(true);
+					exchangeRateResponse.setMessage("No data present for the provided request");
 				}
 			} catch (Exception e) {
-				System.out.println("error in fetchCustomerSalesArea " + e.getMessage());
+				exchangeRateResponse.setIsSuccess(false);
+				exchangeRateResponse.setMessage("Exception occured :: " + e.getMessage());
+				e.printStackTrace();
 			}
+		}
+		else {
+			exchangeRateResponse.setIsSuccess(false);
+			exchangeRateResponse.setMessage("Mandatory request is empty");
 		}
 		return exchangeRateResponse;
 	}

@@ -1,5 +1,7 @@
 package in.kpmg.iocl.serviceimpl;
 
+
+
 import in.kpmg.iocl.entity.SKUModel;
 import in.kpmg.iocl.repo.SKURepository;
 import in.kpmg.iocl.skuapi.SkuAltConversion;
@@ -28,31 +30,36 @@ public class SKUService {
 
 
         List<SkuAltConversion> sku_list_response=new ArrayList<>();
-
         SkuAltConversionResponse skuAltConversionResponse = new SkuAltConversionResponse();
         skuAltConversionResponse.setIsSuccess(false);
 
-        if(materialNo!=null && baseUnitOfMeasure !=null & unitOfMeasureDisplay !=null && numeratorConversion !=null && denominatorConversion !=null)
+        if(materialNo!=null && baseUnitOfMeasure !=null && unitOfMeasureDisplay !=null && numeratorConversion !=null && denominatorConversion !=null)
         {
             try {
                 List<SKUModel> skuDetails = skuRepository.getSKUData(materialNo,baseUnitOfMeasure,unitOfMeasureDisplay,numeratorConversion,denominatorConversion);
+
                     for(SKUModel skuData:skuDetails) {
                         SkuAltConversion sku_altConversion = new SkuAltConversion();
+                        System.out.println("Material ID: "+skuData.getMatnr());
+                        sku_altConversion.setMaterialNo(skuData.getMatnr());
+                        sku_altConversion.setBaseUnitOfMeasure(skuData.getMeinh());
+                        sku_altConversion.setUnitOfMeasureDisplay(skuData.getMeins());
+                        sku_altConversion.setNumeratorConversion(skuData.getUmrez());
+                        sku_altConversion.setDenominatorConversion(skuData.getUmren());
 
-                        sku_altConversion.setMaterialNo(sku_altConversion.getMaterialNo());
-                        sku_altConversion.setBaseUnitOfMeasure(sku_altConversion.getBaseUnitOfMeasure());
-                        sku_altConversion.setUnitOfMeasureDisplay(sku_altConversion.getUnitOfMeasureDisplay());
-                        sku_altConversion.setNumeratorConversion(sku_altConversion.getNumeratorConversion());
-                        sku_altConversion.setDenominatorConversion(sku_altConversion.getDenominatorConversion());
-                        sku_list_response.add(sku_altConversion);
+                        skuAltConversionResponse.getSkuAltConversion().add(sku_altConversion);
                     }
-              if (!sku_list_response.isEmpty()) {
+                if (skuAltConversionResponse.getSkuAltConversion().size() > 0) {
                   skuAltConversionResponse.setIsSuccess(true);
-                  skuAltConversionResponse.getSkuAltConversion().addAll(sku_list_response);
+                  skuAltConversionResponse.setMessage("Data is get fetched ");
+
+
 
               }
             }catch(Exception ex){
-                System.out.println( "Error in SKU Alt Conv: "+ ex.getMessage());
+                skuAltConversionResponse.setIsSuccess(false);
+                skuAltConversionResponse.setMessage("Unable to fetch data from IOCL. Exception occured :: " + ex.getMessage());
+                ex.printStackTrace();
             }
         }return skuAltConversionResponse;
     }

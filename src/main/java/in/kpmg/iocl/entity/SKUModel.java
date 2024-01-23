@@ -17,20 +17,29 @@ public class SKUModel {
         @Id
         private Long id;
         private Boolean isActive = true;
-        @CreationTimestamp
+
         @Column(name="createddate")
         public LocalDateTime createdOn;
-        @UpdateTimestamp
+
         @Column(name="modifieddate")
         public LocalDateTime modifiedDate;
 
-        private String MANTR;
-        private String UMREN;
-        private String MEINH;
-        private String SEPRTR;
-        private String UMREZ;
+        private String matnr;
+        private String umren;
+        private String meinh;
+        private String seprtr;
 
-        private String MEINS;
+        public String getUmrez() {
+                return umrez;
+        }
+
+        public void setUmrez(String umrez) {
+                this.umrez = umrez;
+        }
+
+        private String umrez;
+        private String meins;
+
 
         public Long getId() {
                 return id;
@@ -64,52 +73,44 @@ public class SKUModel {
                 this.modifiedDate = modifiedDate;
         }
 
-        public String getMANTR() {
-                return MANTR;
+        public String getMatnr() {
+                return matnr;
         }
 
-        public void setMANTR(String MANTR) {
-                this.MANTR = MANTR;
+        public void setMatnr(String matnr) {
+                this.matnr = matnr;
         }
 
-        public String getUMREN() {
-                return UMREN;
+        public String getUmren() {
+                return umren;
         }
 
-        public void setUMREN(String UMREN) {
-                this.UMREN = UMREN;
+        public void setUmren(String umren) {
+                this.umren = umren;
         }
 
-        public String getMEINH() {
-                return MEINH;
+        public String getMeinh() {
+                return meinh;
         }
 
-        public void setMEINH(String MEINH) {
-                this.MEINH = MEINH;
+        public void setMeinh(String meinh) {
+                this.meinh = meinh;
         }
 
-        public String getSEPRTR() {
-                return SEPRTR;
+        public String getSeprtr() {
+                return seprtr;
         }
 
-        public void setSEPRTR(String SEPRTR) {
-                this.SEPRTR = SEPRTR;
+        public void setSeprtr(String seprtr) {
+                this.seprtr = seprtr;
         }
 
-        public String getUMREZ() {
-                return UMREZ;
+        public String getMeins() {
+                return meins;
         }
 
-        public void setUMREZ(String UMREZ) {
-                this.UMREZ = UMREZ;
-        }
-
-        public String getMEINS() {
-                return MEINS;
-        }
-
-        public void setMEINS(String MEINS) {
-                this.MEINS = MEINS;
+        public void setMeins(String meins) {
+                this.meins = meins;
         }
 
     }

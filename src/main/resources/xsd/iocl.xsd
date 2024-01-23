@@ -21,6 +21,7 @@
 		<xsd:complexType>
 			<xsd:sequence>
 				<xsd:element name="isSuccess" type="xsd:boolean" />
+				<xsd:element name="message" type="xsd:string"/>
 				<xsd:element name="exchange" type="tns:allExchange"
 							 maxOccurs="unbounded" />
 			</xsd:sequence>
